@@ -1,7 +1,6 @@
 from playwright.async_api import *
 import asyncio
 
-
 parameters = {
     "accept_downloads": True,
 }
@@ -9,7 +8,7 @@ parameters = {
 
 async def wiki_search():
     async with async_playwright() as p:
-        browser = await p.chromium.launch(channel='chrome',headless=False)
+        browser = await p.chromium.launch(channel='chrome', headless=False)
         context = await browser.new_context(**parameters)
         page = await context.new_page()
 
@@ -31,6 +30,8 @@ async def wiki_search():
 
         if 'журнал' in text_title:
             print(text_title)
+
         await browser.close()
+
 
 asyncio.run(wiki_search())
